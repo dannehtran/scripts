@@ -18,15 +18,19 @@ $date = Get-Date
 Write-Output $date.ToUniversalTime() | Out-File -Append "$($dir)\online.txt"
 Write-Output $date.ToUniversalTime() | Out-File -Append "$($dir)\offline.txt"
 
+$counton = 0
+$countoff = 0
 foreach ($line in Get-Content $servers) {
     $lineFormat = $line.TrimEnd()
     If (Test-Connection $lineFormat -Count 1 -Quiet) {
+        $counton ++
         Write-Output "Host Online: $($line)"
         Write-Output $line | Out-File -Append "$($dir)\online.txt" 
     }
     Else {
+        $countoff ++
         Write-Output "Host Offline: $($line)"
         Write-Output $line | Out-File -Append "$($dir)\offline.txt"
     }
 }
-Write-Output 
+Write-Output "There are $($counton) Hosts Online and $($countoff) Hosts Offline."
