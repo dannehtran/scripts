@@ -11,7 +11,7 @@ If ($extension -eq ".csv") {
     $servers = "$($dir)\devices.txt"
 }
 Else {
-    $serverrs = $($file)
+    $servers = $($file)
 }
 
 $date = Get-Date
