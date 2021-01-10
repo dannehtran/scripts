@@ -7,7 +7,4 @@ class MyComputer:
 		self.gpu = gpu
 		self.cpu = cpu
 		return "These are your computer specs: " + computer + gpu + cpu
-
-	def __init__(self):
-
 	x = MyComputer()
