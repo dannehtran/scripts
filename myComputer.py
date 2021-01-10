@@ -10,4 +10,4 @@ class MyComputer:
 
 	def __init__(self):
 
-x = MyComputer()
+	x = MyComputer()
