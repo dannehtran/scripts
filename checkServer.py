@@ -21,6 +21,7 @@ def checkHead(hostname):
 		headResults = str(headRes)
 		return "[Header] Client received an OK " + headResults
 	else:
+		headResults = str(headRes)
 		return "[Header] Client received an " + headResults
 
 # Function that checks the POST response of the host
@@ -30,6 +31,7 @@ def checkPost(hostname):
 		postResults = str(postRes)
 		return "[POST] Client received an OK " + postResults
 	else:
+		postResults = str(postRes)
 		return "[POST] Client received an " + postResults
 
 # Main function that loads the config.json file to attach enviromental variables to code
