@@ -1,0 +1,8 @@
+#### Pip libaries without Version ###
+requests
+os
+subprocess
+csv
+datetime
+json
+pycurl
