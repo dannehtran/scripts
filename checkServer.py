@@ -10,29 +10,29 @@ def checkSSL(hostname, dirPath):
 	getRes = requests.get(hostname, verify=dirPath)
 	if getRes.status_code == 200:
 		sslResults = str(getRes)
-		return "[SSL Verification] Client received an OK " + sslResults
+		return "[SSL Verification] " + hostname + " Client received an OK " + sslResults
 	else:
-		return "[SSL Verification] Client could not verify SSL"
+		return "[SSL Verification] " + hostname + " Client could not verify SSL"
 
 # Function that checks the header response of the host
 def checkHead(hostname):
 	headRes = requests.head(hostname)
 	if headRes.status_code == 200:
 		headResults = str(headRes)
-		return "[Header] Client received an OK " + headResults
+		return "[Header] " + hostname + "Client received an OK " + headResults
 	else:
 		headResults = str(headRes)
-		return "[Header] Client received an " + headResults
+		return "[Header] " + hostname + "Client received an " + headResults
 
 # Function that checks the POST response of the host
 def checkPost(hostname):
 	postRes = requests.post(hostname)
 	if postRes.status_code == 200:
 		postResults = str(postRes)
-		return "[POST] Client received an OK " + postResults
+		return "[POST] " + hostname + " Client received an OK " + postResults
 	else:
 		postResults = str(postRes)
-		return "[POST] Client received an " + postResults
+		return "[POST] " + hostname + " Client received an " + postResults
 
 # Main function that loads the config.json file to attach enviromental variables to code
 def __init__():
