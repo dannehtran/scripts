@@ -6,3 +6,4 @@ csv
 datetime
 json
 pycurl
+cryptography
