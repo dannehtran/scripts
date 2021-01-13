@@ -7,3 +7,4 @@ datetime
 json
 pycurl
 cryptography
+hashlib
