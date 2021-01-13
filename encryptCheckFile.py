@@ -1,6 +1,7 @@
 from cryptography.fernet import Fernet
 import os.path
 from os import path
+import hashlib
 
 class SecureFile:
 	keyFile = ''
@@ -13,7 +14,6 @@ class SecureFile:
 
 	def __init__(self):
 		return
-
 	# Function that creates a private key in the keys directory.
 	def _createKey(self, keyFile):
 
@@ -63,7 +63,7 @@ class SecureFile:
 		self.encrypted_data = encrypted_data
 		self.encondedKey = encondedKey
 
-		#return encrypted_file, encrypted_data, encondedKey, self.filename
+		return filename
 
 	def decryptFile(self):
 		self.unencrypted_file = 'decrypt_' + self.filename
@@ -71,13 +71,25 @@ class SecureFile:
 		decrypted_data =  self.encondedKey.decrypt(self.encrypted_data)
 		with open(self.unencrypted_file, "wb") as file:
 			file.write(decrypted_data)
+		return self.unencrypted_file
 
 
 	def checkHash(self, filename):
-		return
+
+		with open(filename, "rb") as file:
+			chunk = file.read()
+			hashedData = hashlib.sha256(chunk).hexdigest()
+		return(hashedData)
 
 obj = SecureFile()
-keyObj = obj._createKey('test.key')
+keyObj = obj._createKey('test.txt')
 encryptObj = obj.encryptFile('someFile.txt', keyObj)
-decryptObj = obj.decryptFile()
 hashCheckObj = obj.checkHash(encryptObj)
+decryptObj = obj.decryptFile()
+hashCheckDecryptObj = obj.checkHash(decryptObj)
+
+if hashCheckObj == hashCheckDecryptObj:
+	print('Both files have matching hashes, secure file')
+else:
+	print('The decrypted file has been tampered with, deleting file')
+
